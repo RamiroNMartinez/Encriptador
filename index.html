@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encriptador</title>
-  </head>
-  <body>
-    <header></header>
+</head>
+<body>
+    <header>
+
+    </header>
     <main>
-      <div>
-        <input type="text" id="Entrada" placeholder="Ingrese el texto aqui" />
-
-        <i></i>
-        <!--icono -->
-        <p>Solo letras minúsuclas y sin acentos</p>
-
-        <button id="Encriptar" onclick="Encriptar()">Encriptar</button>
-        <button id="Desencriptar" onclick="Desencriptar()">Desencriptar</button>
-      </div>
-
-      <div>
         <div>
-          <img src="" alt="" />
-          <h3>Ningún mensaje fue encontrado</h3>
-          <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+            <input type="text" id="Entrada" placeholder="Ingrese el texto aqui">
+
+            <p>
+                Solo letras minúsuclas y sin acentos
+            </p>
+
+            <button id="Encriptar" onclick="Encriptar()">Encriptar</button>
+            <button id="Desencriptar" onclick="Desencriptar()">Desencriptar</button>
         </div>
+        
         <div>
-          <p class="mensaje--salida" id="Salida"></p>
-          <button id="Copia" onclick="">Copiar</button>
+            <div id="contentSmsj">
+                <img src="" alt="">
+                <h3>
+                    Ningún mensaje fue encontrado
+                </h3>
+                <p>
+                    Ingresa el texto que desees encriptar o desencriptar.
+                </p>
+            </div>
+            <div id="contentCmsj">
+                <p class="mensaje--salida" id="mensajeSalida"></p>
+                <button id="Copia" onclick="Copiar()">Copiar</button>
+            </div>
         </div>
-      </div>
     </main>
-    <footer>Ramiro Martínez - 2024</footer>
+    <footer>
+        Ramiro Martínez - 2024 
+    </footer>
 
     <script src="javascript/app.js"></script>
-  </body>
+</body>
 </html>

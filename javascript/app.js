@@ -1,9 +1,13 @@
 function Encriptar(){ // Cambio las vocales para encriptar el texto
 
+    const boton = document.getElementById('Copia');
 
     let palabraEntrada = document.getElementById("Entrada").value;
-    if(!textoValido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentoss
+    if(textoInvalido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentoss
+        
+        
         //vibra el text area y muetras el error
+        console.log('Le erraste'); //sacar esto
         return;
     }
         
@@ -33,14 +37,24 @@ function Encriptar(){ // Cambio las vocales para encriptar el texto
     }
     palabraEntrada = palabraEntrada.join('');
 
-    console.log(palabraEntrada);
+    boton.textContent='Copiar';
+    const mensajeSalida = document.getElementById('mensajeSalida');
+    mensajeSalida.textContent = palabraEntrada; 
+    limpiarInput();
+    console.log(palabraEntrada); //sacar esto - Funciona como muestra
 }
 
 function Desencriptar(){  //Debo buscar las vocales y reemplazarlas por las originales
 
+    const boton = document.getElementById('Copia');
+
+
     let palabraEntrada = document.getElementById("Entrada").value;
-    if(!textoValido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentoss
+    if(textoInvalido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentos
+
+
         //vibra el text area y muetras el error
+        console.log('Le erraste'); //sacar esto
         return;
     }
 
@@ -63,15 +77,38 @@ function Desencriptar(){  //Debo buscar las vocales y reemplazarlas por las orig
 
     }
 
-
-    console.log(palabraEntrada);
+    boton.textContent='Copiar';
+    const mensajeSalida = document.getElementById('mensajeSalida');
+    mensajeSalida.textContent = palabraEntrada; 
+    limpiarInput();
+    console.log(palabraEntrada); //sacar esto - funciona como muestra
 }
 
-function textoValido(palabra){
+function textoInvalido(palabra){ 
 
-    const valorInvalido1 = /[A-Z]/g;
-    const valorInvalido2 = /[á,é,í,ó,ú]/; 
-
+    const longitud = palabra.length;
+    let i =0;
+    let validez = false;
+    while(i<longitud && !validez){
+        if(!((palabra.charCodeAt(i)>96 && palabra.charCodeAt(i)<123) || palabra.charCodeAt(i)==32)) //comprueba que sea un caracter que se acepta y lo niega para seguir, caso contrario ingresa
+            validez = true;
+        i++;
+    }    
     
+    return validez;
 
+}
+
+
+function Copiar(){
+
+    const mensaje = document.getElementById('mensajeSalida');
+    const boton = document.getElementById('Copia');
+
+    navigator.clipboard.writeText(mensaje.textContent);
+    boton.textContent='Copiado';
+}
+
+function limpiarInput(){
+    document.querySelector('#Entrada').value = '';
 }
