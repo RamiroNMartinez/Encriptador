@@ -112,3 +112,16 @@ function Copiar(){
 function limpiarInput(){
     document.querySelector('#Entrada').value = '';
 }
+
+function MostrarTexto(){
+
+    const text = document.getElementById('Entrada');
+    text.textContent = 'Ingrese el texto aqui';
+
+}
+
+function OcultarTexto(){
+
+    const text = document.getElementById('Entrada');
+    text.textContent = '';
+}

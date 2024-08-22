@@ -1,0 +1,56 @@
+:root{
+    --colorPrimario: #E9ECF8;
+    --colorSecundario: #0A3871;
+    --colorTerciario: white; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+}
+
+body{
+    background-color: var(--colorPrimario);    
+    height: 90%;
+    width: 100%;
+}
+
+main{
+    margin: 0 40px;
+    height: 90vh;
+    display: flex;
+}
+
+.contenedor--logo{
+    margin-top: 40px;
+    width:fit-content;
+}
+
+.contenedor--entrada{
+    margin-top: 40px;
+    width: 75%;
+    height: 90%;
+    justify-content: center;
+}
+
+.contenedor--salida{
+    margin-top: 40px;
+    background-color: var(--colorTerciario);
+    width: 25%;
+    height: 90%;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+} /*  ver cómo puedo ocultar el botón / mostrar el texto encriptado */
+
+.imagen{
+    height: 300px;
+    width: 300px;
+    object-fit: contain;
+}
