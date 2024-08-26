@@ -1,72 +1,77 @@
-function Encriptar(){ // Cambio las vocales para encriptar el texto
+const mensajeEntrada = document.getElementById('Entrada');
+const mensajeSalida = document.getElementById('mensajeSalida');
+const botonCopiar = document.getElementById('Copia');
+const botonDesencriptar = document.getElementById('Desencriptar');
+const botonEncriptar = document.getElementById('Encriptar');
 
-    const boton = document.getElementById('Copia');
 
-    let palabraEntrada = document.getElementById("Entrada").value;
-    if(textoInvalido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentoss
-        
-        
-        //vibra el text area y muetras el error
-        console.log('Le erraste'); //sacar esto
+
+function Encriptar(entrada, mensajeSalida, botonCopiar){ 
+    let palabraEntrada = entrada.value;
+
+    mensajeSalida.textContent = ''; //limpio el mensaje antes de empezar
+    botonCopiar.textContent='Copiar'; 
+
+    if(!textoValido(palabraEntrada) && palabraEntrada!=''){ //Valida que el texto esté en minúsculas y sin acentos
+        //vibra el textarea 
+        ocultarMensaje();
+        activarError();
+
+        return;
+    }
+    limpiarInput(entrada);  //limpio la entrada acá para que no quede basura
+    if(palabraEntrada==='' || palabraEntrada.replaceAll(' ','')===''){
+        ocultarMensaje();
         return;
     }
         
-
-    palabraEntrada = palabraEntrada.split('');
-
-    for(let i = 0; i<palabraEntrada.length;i++){
-        if(palabraEntrada[i] == 'a'){
-            palabraEntrada[i] = palabraEntrada[i].replace('a','ai');
-            continue;
-        }
-        if(palabraEntrada[i] == 'e'){
-            palabraEntrada[i] = palabraEntrada[i].replace('e','enter');
-            continue;
-        }
-        if(palabraEntrada[i] == 'i'){
-            palabraEntrada[i] = palabraEntrada[i].replace('i','imes');
-            continue;
-        }
-        if(palabraEntrada[i] == 'o'){
-            palabraEntrada[i] = palabraEntrada[i].replace('o','ober');
-            continue;
-        }
-        if(palabraEntrada[i] == 'u'){
-            palabraEntrada[i] = palabraEntrada[i].replace('u','ufat');
-        }
+    if(palabraEntrada.includes('e')){
+        palabraEntrada = palabraEntrada.replaceAll('e','enter');
     }
-    palabraEntrada = palabraEntrada.join('');
+    if(palabraEntrada.includes('i')){
+        palabraEntrada = palabraEntrada.replaceAll('i','imes');
+    }
+    if(palabraEntrada.includes('a')){
+        palabraEntrada = palabraEntrada.replaceAll('a','ai');
+    }   
+    if(palabraEntrada.includes('o')){
+        palabraEntrada = palabraEntrada.replaceAll('o','ober');
+    }
+    if(palabraEntrada.includes('u')){
+        palabraEntrada = palabraEntrada.replaceAll('u','ufat');
+    }
 
-    boton.textContent='Copiar';
-    const mensajeSalida = document.getElementById('mensajeSalida');
     mensajeSalida.textContent = palabraEntrada; 
-    limpiarInput();
-    console.log(palabraEntrada); //sacar esto - Funciona como muestra
-}
+    mostrarMensaje();
+}    
 
-function Desencriptar(){  //Debo buscar las vocales y reemplazarlas por las originales
+function Desencriptar(entrada, mensajeSalida, botonCopiar){ 
+    let palabraEntrada = entrada.value;
 
-    const boton = document.getElementById('Copia');
+    mensajeSalida.textContent = ''; //limpio el mensaje antes de empezar
+    botonCopiar.textContent='Copiar';
 
-
-    let palabraEntrada = document.getElementById("Entrada").value;
-    if(textoInvalido(palabraEntrada)){ //Valida que el texto esté en minúsculas y sin acentos
-
-
+    if(!textoValido(palabraEntrada) && palabraEntrada!=''){ //Valida que el texto esté en minúsculas y sin acentos
         //vibra el text area y muetras el error
-        console.log('Le erraste'); //sacar esto
+        ocultarMensaje();
+        activarError();
+
+        return;
+    }
+    limpiarInput(entrada);
+    if(palabraEntrada==='' || palabraEntrada.replaceAll(' ','')===''){
+        ocultarMensaje();
         return;
     }
 
-    if(palabraEntrada.includes('ai')){
-        palabraEntrada = palabraEntrada.replaceAll('ai','a');
-    }
     if(palabraEntrada.includes('enter')){
         palabraEntrada = palabraEntrada.replaceAll('enter','e');
     }
     if(palabraEntrada.includes('imes')){
         palabraEntrada = palabraEntrada.replaceAll('imes','i');
-
+    }
+    if(palabraEntrada.includes('ai')){
+        palabraEntrada = palabraEntrada.replaceAll('ai','a');
     }
     if(palabraEntrada.includes('ober')){
         palabraEntrada = palabraEntrada.replaceAll('ober','o');
@@ -76,52 +81,65 @@ function Desencriptar(){  //Debo buscar las vocales y reemplazarlas por las orig
         palabraEntrada = palabraEntrada.replaceAll('ufat','u');
 
     }
-
-    boton.textContent='Copiar';
-    const mensajeSalida = document.getElementById('mensajeSalida');
-    mensajeSalida.textContent = palabraEntrada; 
-    limpiarInput();
-    console.log(palabraEntrada); //sacar esto - funciona como muestra
-}
-
-function textoInvalido(palabra){ 
-
-    const longitud = palabra.length;
-    let i =0;
-    let validez = false;
-    while(i<longitud && !validez){
-        if(!((palabra.charCodeAt(i)>96 && palabra.charCodeAt(i)<123) || palabra.charCodeAt(i)==32)) //comprueba que sea un caracter que se acepta y lo niega para seguir, caso contrario ingresa
-            validez = true;
-        i++;
-    }    
     
-    return validez;
+    mensajeSalida.textContent = palabraEntrada; 
+    mostrarMensaje();
 
 }
 
+//Valido si el texto esta sólo en minúsculas y no contiene nada más que minúsculas
+function textoValido(palabra){ 
 
-function Copiar(){
+    return /^[a-zñ ]+$/.test(palabra);  
+}
 
-    const mensaje = document.getElementById('mensajeSalida');
-    const boton = document.getElementById('Copia');
+
+function Copiar(boton, palabraEntrada){
+    const mensaje = palabraEntrada;
 
     navigator.clipboard.writeText(mensaje.textContent);
     boton.textContent='Copiado';
+    setTimeout(() => {
+        boton.textContent = 'Copiar';
+    }, 1800);
 }
 
-function limpiarInput(){
-    document.querySelector('#Entrada').value = '';
+function limpiarInput(entrada){
+    entrada.value = '';
 }
 
-function MostrarTexto(){
+function activarError(){
+    const entrada = document.getElementById('Entrada');
+    const icono = document.getElementById('icono');
+    const texto = document.getElementById('texto');
 
-    const text = document.getElementById('Entrada');
-    text.textContent = 'Ingrese el texto aqui';
-
+    icono.classList.add('texto--error');
+    texto.classList.add('texto--error');
+    entrada.classList.add('vibrar--cambio');
+    setTimeout(() => {
+        entrada.classList.remove('vibrar--cambio');
+        icono.classList.remove('texto--error');
+        texto.classList.remove('texto--error');
+    }, 1000);
 }
 
-function OcultarTexto(){
+function mostrarMensaje(){
+    const contConMensaje = document.getElementById('contenido--Cmsj');
+    const contSinMensaje = document.getElementById('contenido--Smsj');
 
-    const text = document.getElementById('Entrada');
-    text.textContent = '';
+    contConMensaje.style.display = 'flex';
+    contSinMensaje.style.display = 'none';
 }
+
+function ocultarMensaje(){
+    const contConMensaje = document.getElementById('contenido--Cmsj');
+    const contSinMensaje = document.getElementById('contenido--Smsj');
+
+    contConMensaje.style.display = 'none';
+    contSinMensaje.style.display = 'flex';
+}
+
+
+botonEncriptar.addEventListener("click", ()=> { Encriptar(mensajeEntrada, mensajeSalida, botonCopiar) } );
+botonDesencriptar.addEventListener("click", ()=> { Desencriptar(mensajeEntrada, mensajeSalida, botonCopiar) } );
+botonCopiar.addEventListener("click", () => { Copiar(botonCopiar, mensajeSalida) } );

@@ -15,42 +15,45 @@
 <body>
     <main>
         <div class="contenedor--logo">
-            <img src="img/Logo.png" alt="Logo" class="logo">
+            <img src="img/Logo.png" alt="Logo Alura" class="logo">
         </div>
 
         <div class="contenedor--entrada">
-            <!-- <input class="entrada" type="text" id="Entrada" placeholder="Ingrese el texto aqui" size="60"> que sea un contenteditable -->
-
-            <p class="entrada" id="Entrada" onblur="MostrarTexto()" onfocus="OcultarTexto()" contenteditable="true">Ingrese el texto aqui</p>
-
-            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-            <p>
-                Solo letras minúsuclas y sin acentos
-            </p>
-
-            <button id="Encriptar" onclick="Encriptar()">Encriptar</button>
-            <button id="Desencriptar" onclick="Desencriptar()">Desencriptar</button>
+            <div class="textos">
+                <textarea class="entrada" id="Entrada" placeholder="Ingrese el texto aqui" autocomplete="off" wrap="hard"></textarea>
+            
+                <div class="textos--condicion" id="textos--condicion">
+                    <i class="fa fa-exclamation-circle" id="icono" aria-hidden="true"></i>
+                    <p class="condicion" id="texto">Solo letras minúsuclas y sin acentos
+                    </p>
+                </div>
+                
+            </div>
+            <div class="botones">
+                <button id="Encriptar" class="boton--encriptar">Encriptar</button>
+                <button id="Desencriptar" class="boton--desencriptar">Desencriptar</button>
+            </div>
         </div>
         
         <div class="contenedor--salida">
-            <div id="contentSmsj">
+            <div id="contenido--Smsj" class="contenido--Smsj">
                 <img class="imagen" src="img/Muneco.jpg" alt="Sin mensajes">
-                <h3>
+                <p class="sin--mensaje">
                     Ningún mensaje fue encontrado
-                </h3>
-                <p>
+                </p>
+                <p class="texto--descriptivo">
                     Ingresa el texto que desees encriptar o desencriptar.
                 </p>
             </div>
-            <div id="contentCmsj">
+            <div id="contenido--Cmsj" class="contenido--Cmsj">
                 <p class="mensaje--salida" id="mensajeSalida"></p>
-                <button id="Copia" onclick="Copiar()">Copiar</button>
+                <button id="Copia" class="boton--copia">Copiar</button>
             </div>
         </div>
     </main>
 
     <footer class="pie--pagina">
-        Ramiro Martínez - 2024 
+        Ramiro Martínez - Alura Challenge - 2024 
     </footer>
 
     <script src="javascript/app.js"></script>

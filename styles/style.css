@@ -2,6 +2,7 @@
     --colorPrimario: #E9ECF8;
     --colorSecundario: #0A3871;
     --colorTerciario: white; 
+    --colorGris: #495057;
 }
 
 * {
@@ -14,43 +15,431 @@
 
 body{
     background-color: var(--colorPrimario);    
-    height: 90%;
+    height: 100vh;
     width: 100%;
 }
 
-main{
-    margin: 0 40px;
-    height: 90vh;
+.pie--pagina{
+    height: 30px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: var(--colorGris);
+    
+}
+
+main{
+    margin-right: 40px;
+    height: 95%;
+    display: flex;
+    overflow: wrap;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+textarea{
+    resize: none;
 }
 
 .contenedor--logo{
     margin-top: 40px;
-    width:fit-content;
+    width: auto;
+    height: auto;
 }
 
 .contenedor--entrada{
+    display: flex;
+    flex-direction: column;
     margin-top: 40px;
+    padding: 0 1rem; 
     width: 75%;
-    height: 90%;
+    height: auto ;
+    align-items: center;
+}
+
+.textos{
+    width: 80%;
+    margin-top: 32px;
+    min-height: 85%; 
+}
+
+.entrada{
+    width: 100%;
+    height: 95%;
+    padding-top: 110px;
+    font-size: 32px;
+    color: var(--colorSecundario);
+    background-color: var(--colorPrimario);
+    border: none;
+    outline: none;
+    text-align: start;
+}
+
+
+.entrada::placeholder{
+    color: var(--colorSecundario);
+
+}
+
+.textos--condicion{
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    size: 12px;
+    color: var(--colorGris);
+}
+
+.condicion{
+    font-size: 12px;
+} 
+
+.botones{
+    display: flex;
+    width: 90%;
     justify-content: center;
+    gap: 2rem;
+}
+
+.boton--encriptar{
+    margin-bottom: 30px;
+    height: 67px;
+    width: 45%;
+    font-size: 16px;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--colorSecundario);
+    border-radius: 24px;
+    background-color: var(--colorSecundario);
+    color: var(--colorTerciario);    
+}
+
+
+.boton--desencriptar{
+    margin-bottom: 30px;
+    height: 67px;
+    width: 45%;
+    font-size: 16px;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--colorSecundario);
+    border-radius: 24px;
+    background-color: #D8DFE8;
+    color: var(--colorSecundario);
 }
 
 .contenedor--salida{
+    display: flex;
+    justify-content: center;
     margin-top: 40px;
     background-color: var(--colorTerciario);
-    width: 25%;
-    height: 90%;
+    width: 30%;
+    height: 95%;
     border-radius: 32px;
+    
+} 
+
+.contenido--Smsj{
+    width: 80%;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-} /*  ver cómo puedo ocultar el botón / mostrar el texto encriptado */
+    justify-content: center;
+    text-align: center;
+    text-wrap: wrap;
+    padding: 0 1rem;
+}
 
 .imagen{
-    height: 300px;
-    width: 300px;
-    object-fit: contain;
+    width: 80%;
+    object-fit: fill;
+    text-align: center;
 }
+
+.sin--mensaje{
+    font-weight: bold;
+    font-size: 24px;
+} 
+
+.contenido--Cmsj{
+    display: none;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mensaje--salida{
+    width: 80%;
+    min-height: 85%;
+    font-size: 24px;
+    color: var(--colorGris);
+    background-color: var(--colorTerciario);
+    text-align: left;
+    margin-top: 32px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.boton--copia{
+    margin-bottom: 30px;
+    height: 67px;
+    width: 90%;
+    font-size: 16px;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--colorSecundario);
+    border-radius: 24px;
+    background-color: var(--colorTerciario);
+    color: var(--colorSecundario);
+}
+
+
+.texto--error{
+    animation: agrandar 1s ease-in-out infinite; 
+}
+
+.vibrar--cambio{
+    animation-name: vibrar, cambiarColor;
+    animation-duration:  1s, 1s;
+    animation-timing-function: ease-in-out,ease-in-out;
+    animation-delay: infinite,infinite;
+
+}
+
+
+@keyframes cambiarColor {
+
+    0%{
+        color: var(--colorSecundario);
+        font-weight: 300;
+    }
+    50%{
+        color: red;
+        font-weight: 700;
+    }
+    100%{
+        color: var(--colorSecundario);
+        font-weight: 300;
+    }
+    
+}
+
+
+@keyframes vibrar {
+    0% { transform: translate(0px, 0px); }
+    20% { transform: translate(-2px, -2px); }
+    40% { transform: translate(2px, 2px); }
+    60% { transform: translate(-2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+@keyframes agrandar {
+    0% {
+        font-size: 12px;
+        color: var(--colorGris);
+        font-weight: 300;
+    }
+    50% {
+        font-size: 24px;
+        color: red;
+        font-weight: bold;
+    }
+    100% {
+        font-size: 13px;
+        color: var(--colorGris);
+        font-weight: 300;
+    }
+}
+
+@media (max-width: 772px) {
+    
+
+    body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    main{
+        /* height:auto; */
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+    }
+
+    .imagen{
+        display: none;
+    }
+
+    .contenedor--logo{
+        width: 100%;
+    }
+    
+    .contenedor--entrada{
+        margin: 0;
+        width: 100%;
+        height: 90%;
+        padding: 0;
+        margin-bottom: 1rem;
+        gap: 1rem;
+        overflow: wrap;
+    }
+
+    .botones{
+        justify-content: space-between;
+        gap: 1rem;
+        width: 90%;
+        height: auto;
+    }
+
+    .boton--desencriptar,
+    .boton--encriptar{
+        width: 50%;
+        margin: 0;
+    }
+
+    .contenedor--salida{
+        display: flex;
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .contenido--Smsj{
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .contenido--Cmsj{
+        gap: 1.6rem;
+    }
+
+    .mensaje--salida{
+        height: 6rem;
+        overflow-y: scroll;
+    }
+
+    .boton--copia{
+        height: 60px;
+    }
+
+    @keyframes agrandar {
+        0% {
+            font-size: 12px;
+            color: var(--colorGris);
+            font-weight: 300;
+        }
+        50% {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+        100% {
+            font-size: 13px;
+            color: var(--colorGris);
+            font-weight: 300;
+        }
+    }
+
+}
+
+@media (max-width: 468px){
+
+    .contenedor--logo{
+        margin-top: 20px;
+    }
+
+    .entrada{
+        padding-top: 0;
+        height: 460px;
+    }
+    .textos{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 90%;        
+    }
+    .contenedor--entrada{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        height: 36rem;
+    }
+
+    .botones{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        height: auto;
+        gap: 4px;
+    }
+
+    .boton--desencriptar,
+    .boton--encriptar{
+        width: 90%;
+        height: 58px;
+    }
+
+    .contenedor--salida{
+        display: flex;
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        margin-top: 5rem;
+    }
+
+    .contenido--Smsj{
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+
+    .contenido--Cmsj{
+        gap: 1rem;
+
+    }
+    
+    .mensaje--salida{
+        width: 90%;
+    }
+    .boton--copia{
+        margin-bottom: 1rem;
+    }
+
+    .pie--pagina{ /*cambiar margin top con js*/
+        margin-top: 5rem;
+    }
+
+    @keyframes agrandar {
+        0% {
+            font-size: 12px;
+            color: var(--colorGris);
+            font-weight: 300;
+        }
+        50% {
+            font-size: 18px;
+            color: red;
+            font-weight: bold;
+        }
+        100% {
+            font-size: 13px;
+            color: var(--colorGris);
+            font-weight: 300;
+        }
+    }
+
+
+}
+
